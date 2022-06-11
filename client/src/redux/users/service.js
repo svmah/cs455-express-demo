@@ -7,7 +7,13 @@ const addUser = async (name) => {
     body: JSON.stringify(name)
   });
 
-  return response.json();
+  const data = await response.json();
+  if (!response.ok) {
+    const errorMsg = data?.message;
+    throw new Error(errorMsg)
+  }
+  
+  return data;
 };
 
 const getUsers = async () => {

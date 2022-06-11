@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   list: [],
   getUsers: REQUEST_STATE.IDLE,
   addUser: REQUEST_STATE.IDLE,
-  errors: null
+  error: null
 };
 
 const usersSlice = createSlice({
@@ -17,6 +17,7 @@ const usersSlice = createSlice({
     builder
       .addCase(getUsersAsync.pending, (state) => {
         state.getUsers = REQUEST_STATE.PENDING;
+        state.error = null;
       })
       .addCase(getUsersAsync.fulfilled, (state, action) => {
         state.getUsers = REQUEST_STATE.FULFILLED;
@@ -24,10 +25,11 @@ const usersSlice = createSlice({
       })
       .addCase(getUsersAsync.rejected, (state, action) => {
         state.getUsers = REQUEST_STATE.REJECTED;
-        state.errors = action.error;
+        state.error = action.error;
       })
       .addCase(addUserAsync.pending, (state) => {
         state.addUser = REQUEST_STATE.PENDING;
+        state.error = null;
       })
       .addCase(addUserAsync.fulfilled, (state, action) => {
         state.addUser = REQUEST_STATE.FULFILLED;
@@ -35,7 +37,7 @@ const usersSlice = createSlice({
       })
       .addCase(addUserAsync.rejected, (state, action) => {
         state.addUser = REQUEST_STATE.REJECTED;
-        state.errors = action.error;
+        state.error = action.error;
       });
   }
 });
