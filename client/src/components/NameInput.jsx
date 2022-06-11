@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import styled from '@emotion/styled';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../redux/users/reducer'
+import { addUserAsync } from '../redux/users/thunks';
+
 const StyledContainer = styled(Box)`
   display: flex;
   align-items: center;
@@ -15,7 +16,7 @@ export const NameInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addUser({ id: Math.round(Math.random() * 10000), name }));
+    dispatch(addUserAsync(name));
     setName('');
   };
 
