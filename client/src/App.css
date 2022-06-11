@@ -1,0 +1,10 @@
+body {
+  height: 100vmax;
+  width: 100vmax;
+  color: white;
+  background: repeating-linear-gradient(
+    135deg,
+    #fff,
+    rgb(244, 244, 244) 10px
+  );
+}
