@@ -12,6 +12,14 @@ router.get('/', function (req, res, next) {
   return res.send(users);
 });
 
+router.get('/:userId', function (req, res, next) {
+  const foundUser = users.find(user => user.id === req.params.userId);
+  
+  if (!foundUser) return res.status(404).send({ message: 'User not found' });
+
+  return res.send(foundUser);
+});
+
 router.post('/', function (req, res, next) {
   if (!req.body.name) {
     return res.status(400).send({ message: 'User must have a name!' })
