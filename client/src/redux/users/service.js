@@ -1,5 +1,5 @@
 const addUser = async (name) => {
-  const response = await fetch('http://localhost:3001/users', {
+  const response = await fetch(`${process.env.REACT_APP_REST_API_URL}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ const addUser = async (name) => {
 };
 
 const getUsers = async () => {
-  const response = await fetch('http://localhost:3001/users', {
+  const response = await fetch(`${process.env.REACT_APP_REST_API_URL}/users`, {
     method: 'GET'
   });
   return response.json();
